@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7y5o6f127fr4"]
+[gd_scene load_steps=5 format=3 uid="uid://b7y5o6f127fr4"]
 
 [ext_resource type="PackedScene" uid="uid://m8b6utl6b5bk" path="res://scenes/Penguin.tscn" id="2_6gv00"]
 [ext_resource type="Script" path="res://scripts/Penguin.gd" id="3_g1s8y"]
 [ext_resource type="Script" path="res://scenes/ramp1.gd" id="4_2kdpu"]
-[ext_resource type="PhysicsMaterial" uid="uid://clqm8kk63r32c" path="res://materials/icy_surface.tres" id="4_6cg8c"]
 [ext_resource type="Texture2D" uid="uid://co5hvi0dnjcl5" path="res://Assets/ramps/ramp1.png" id="4_ary8v"]
 
 [node name="Node" type="Node"]
@@ -14,7 +13,6 @@ rotation = -0.14335
 script = ExtResource("3_g1s8y")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-physics_material_override = ExtResource("4_6cg8c")
 script = ExtResource("4_2kdpu")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
