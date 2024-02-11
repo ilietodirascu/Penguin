@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7y5o6f127fr4"]
+
+[ext_resource type="Script" path="res://Ramp_1.0.gd" id="1_622g5"]
+[ext_resource type="PackedScene" uid="uid://m8b6utl6b5bk" path="res://Penguin.tscn" id="2_6gv00"]
+
+[sub_resource type="TileSet" id="TileSet_6iuj6"]
+
+[node name="Node" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_6iuj6")
+format = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(116, 90, 94, 693, 1055, 697, 1045, 555, 954, 497, 788, 407, 562, 347, 516, 252, 328, 149, 225, 92, 131, 48)
+script = ExtResource("1_622g5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_6gv00")]
+position = Vector2(238, 23)
