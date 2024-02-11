@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7y5o6f127fr4"]
+[gd_scene load_steps=5 format=3 uid="uid://b7y5o6f127fr4"]
 
 [ext_resource type="Script" path="res://Ramp_1.0.gd" id="1_622g5"]
 [ext_resource type="PackedScene" uid="uid://m8b6utl6b5bk" path="res://Penguin.tscn" id="2_6gv00"]
+[ext_resource type="Script" path="res://Penguin.gd" id="3_g1s8y"]
 
 [sub_resource type="TileSet" id="TileSet_6iuj6"]
 
@@ -19,4 +20,5 @@ script = ExtResource("1_622g5")
 [node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_6gv00")]
-position = Vector2(238, 23)
+position = Vector2(233, 25)
+script = ExtResource("3_g1s8y")
