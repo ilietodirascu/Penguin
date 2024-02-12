@@ -8,8 +8,8 @@
 [node name="Node" type="Node"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_6gv00")]
-position = Vector2(314, 125)
-rotation = -0.14335
+position = Vector2(334, 106)
+rotation = -0.429401
 script = ExtResource("3_g1s8y")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -21,4 +21,4 @@ scale = Vector2(0.746875, 0.675)
 texture = ExtResource("4_ary8v")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-6, 134, 233, 146, 285, 263, 375, 403, 447, 465, 505, 496, 592, 516, 721, 503, 924, 454, 937, 751, 362, 707, -199, 710)
+polygon = PackedVector2Array(-6, 134, 233, 146, 285, 263, 375, 403, 447, 465, 505, 496, 587, 513, 721, 503, 924, 454, 937, 751, 362, 707, -199, 710)
