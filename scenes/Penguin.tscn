@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://m8b6utl6b5bk"]
+[gd_scene load_steps=3 format=3 uid="uid://m8b6utl6b5bk"]
 
 [ext_resource type="Texture2D" uid="uid://du0q6jybgtfbv" path="res://Assets/Pengu.png" id="1_5pe4i"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x6itr"]
+radius = 93.8936
+height = 408.572
+
+[node name="RigidBody2D" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -1)
@@ -10,8 +14,11 @@ rotation = 0.47822
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("1_5pe4i")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(56, 11, 47, 36, 40, 33, 36, 39, 29, 43, 21, 43, 4, 35, -8, 26, -17, 25, -28, 18, -31, 16, -44, 8, -53, -1, -56, -5, -56, -9, -60, -12, -32, -51)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 1)
+rotation = -1.0288
+scale = Vector2(0.285, 0.285)
+shape = SubResource("CapsuleShape2D_x6itr")

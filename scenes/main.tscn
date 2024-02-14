@@ -2,23 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://m8b6utl6b5bk" path="res://scenes/Penguin.tscn" id="2_6gv00"]
 [ext_resource type="Script" path="res://scripts/Penguin.gd" id="3_g1s8y"]
-[ext_resource type="Script" path="res://scenes/ramp1.gd" id="4_2kdpu"]
 [ext_resource type="Texture2D" uid="uid://co5hvi0dnjcl5" path="res://Assets/ramps/ramp1.png" id="4_ary8v"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vu44b"]
+friction = 0.1
 
 [node name="Node" type="Node"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_6gv00")]
 position = Vector2(314, 125)
-rotation = -0.14335
+rotation = -0.195311
 script = ExtResource("3_g1s8y")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-script = ExtResource("4_2kdpu")
+position = Vector2(-17, -37)
+physics_material_override = SubResource("PhysicsMaterial_vu44b")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(721, 280)
+position = Vector2(716, 247)
 scale = Vector2(0.746875, 0.675)
 texture = ExtResource("4_ary8v")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-6, 134, 233, 146, 285, 263, 375, 403, 447, 465, 505, 496, 592, 516, 721, 503, 924, 454, 937, 751, 362, 707, -199, 710)
+polygon = PackedVector2Array(-4, 103, 222, 113, 248, 151, 265, 196, 296, 253, 327, 312, 362, 350, 393, 393, 439, 424, 481, 453, 519, 467, 586, 477, 641, 479, 745, 462, 814, 448, 900, 424, 914, 415, 914, 529, 916, 600, 8, 600)
