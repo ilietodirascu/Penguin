@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://kb57w1k3sks2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35ff5"]
+size = Vector2(10764, 426)
+
+[node name="Wota" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2561, 203)
+shape = SubResource("RectangleShape2D_35ff5")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(1529.01, 0)
+scale = Vector2(4.14363, 1)
+color = Color(0.0745098, 0.054902, 1, 0.329412)
+polygon = PackedVector2Array(1355, -8, -1104, -9, -1121, 519, 1476, 564)
