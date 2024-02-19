@@ -1,7 +1,9 @@
 extends RigidBody2D
 
-var glideForce = 10  # Adjust this value to control the strength of the glide force.
+var glideForce = 1000  # Adjust this value to control the strength of the glide force.
 # Called when the node enters the scene tree for the first time.
+var lift_strength = 800  # Adjusted for more noticeable lift
+var drag_coefficient = 0.1
 
 func _ready():
 	contact_monitor = true
@@ -9,22 +11,19 @@ func _ready():
 	angular_velocity = 0.0
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	#don't like the meta bs
-	if get_colliding_bodies().any(func(body) : body.get_meta("Water", false)): # y u no work????????????????????
-		reset_properties()
-	else:
-		modify_in_water()
+func _physics_process(delta):
 	
 	var direction : Vector2
 	# Normalize the direction to ensure consistent movement speed in all directions
 	if direction.length_squared() > 0:
 		direction = direction.normalized()
-
+	
 	# Apply the glide force based on the arrow keys input
 	apply_central_impulse(direction * glideForce)
-	
+	apply_lift()
+	apply_drag()
 	modify_angular_momentum()
+	
 	
 func modify_in_water():
 	# Adjust properties when in water (e.g., reduce gravity, apply buoyancy)
@@ -35,7 +34,7 @@ func modify_in_water():
 	#set_linear_damping(linear_damping)
 
 func reset_properties():
-	print("not in wata(")
+	print("not in wata")
 	# Reset properties when not in water
 	set_gravity_scale(1.0)
 	#set_linear_damping(0.0)
@@ -46,4 +45,13 @@ func modify_angular_momentum():
 	if Input.is_action_pressed("ui_left") && angular_velocity > -1:
 		angular_velocity -= 1
 		set_angular_velocity(angular_velocity)
+		
+func apply_lift():
+	var lift_force = Vector2(0, -1) * lift_strength  # lift_strength is a variable you can adjust
+	apply_central_force(lift_force)
+
+func apply_drag():
+	var velocity = linear_velocity
+	var drag_force = velocity.normalized() * -drag_coefficient * velocity.length()  # drag_coefficient is a variable you can adjust
+	apply_central_force(drag_force)
 	
