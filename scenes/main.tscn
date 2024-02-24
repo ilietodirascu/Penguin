@@ -26,7 +26,7 @@ texture = ExtResource("4_ary8v")
 polygon = PackedVector2Array(-6, 134, 233, 146, 252, 188, 266, 219, 315, 313, 373, 398, 447, 465, 505, 496, 587, 513, 721, 503, 924, 454, 937, 751, 362, 707, -199, 710)
 
 [node name="RigidBody2D" parent="." instance=ExtResource("3_c3pm2")]
-position = Vector2(46.0001, 93)
+position = Vector2(43, 92)
 rotation = -0.53766
 metadata/is_character = true
 

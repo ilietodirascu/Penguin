@@ -53,3 +53,5 @@ func raycasting_process(delta):
 			is_on_ramp = true
 		else:
 			is_on_ramp = false
+	else:
+		is_on_ramp = false
