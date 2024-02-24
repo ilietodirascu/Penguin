@@ -10,6 +10,12 @@ var rocket_fuel = 0
 var days = 0
 
 func _ready():
+	pass
+
+func _process(delta):
+	pass
+	
+func load_from_file():
 	var progression : ConfigFile = ConfigFile.new();
 	if progression.load(filename) == OK:
 		acceleration = progression.get_value("", "acceleration")
@@ -18,6 +24,7 @@ func _ready():
 		rocket = progression.get_value("", "rocket")
 		rocket_fuel = progression.get_value("", "rocket_fuel")
 		days = progression.get_value("", "days")
+		print("foo ", acceleration)
 	else:
 		progression.set_value("", "acceleration", 0)
 		progression.set_value("", "air_resistance", 0)
@@ -26,8 +33,3 @@ func _ready():
 		progression.set_value("", "rocket_fuel", 0)
 		progression.set_value("", "days", 0)
 		progression.save(filename)
-
-func _process(delta):
-	pass
-	
-
