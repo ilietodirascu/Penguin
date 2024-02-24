@@ -4,25 +4,31 @@ var glideForce = 1000  # Adjust this value to control the strength of the glide 
 # Called when the node enters the scene tree for the first time.
 var lift_strength = 800  # Adjusted for more noticeable lift
 var drag_coefficient = 0.1
+var is_on_ramp = true
+var raycast:RayCast2D = null
+
 
 func _ready():
 	contact_monitor = true
+	raycast = $RayCast2D
 	max_contacts_reported = 2
 	angular_velocity = 0.0
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
 	var direction : Vector2
-	# Normalize the direction to ensure consistent movement speed in all directions
 	if direction.length_squared() > 0:
 		direction = direction.normalized()
 	
-	# Apply the glide force based on the arrow keys input
+	raycasting_process(delta)
+	
 	apply_central_impulse(direction * glideForce)
-	apply_lift()
-	apply_drag()
-	modify_angular_momentum()
+	
+	if(!is_on_ramp):
+		apply_lift()
+		apply_drag()
+		modify_angular_momentum()
+	
+	
 	
 	
 func modify_in_water():
@@ -34,7 +40,6 @@ func modify_in_water():
 	#set_linear_damping(linear_damping)
 
 func reset_properties():
-	print("not in wata")
 	# Reset properties when not in water
 	set_gravity_scale(1.0)
 	#set_linear_damping(0.0)
@@ -54,4 +59,15 @@ func apply_drag():
 	var velocity = linear_velocity
 	var drag_force = velocity.normalized() * -drag_coefficient * velocity.length()  # drag_coefficient is a variable you can adjust
 	apply_central_force(drag_force)
+
 	
+func raycasting_process(delta):
+	var collider = raycast.get_collider()
+	if collider:
+		var i = raycast.get_collider_shape()
+		var hit_node = collider.shape_owner_get_owner(collider.shape_find_owner(i))
+		var parent_node = hit_node.get_parent()
+		if parent_node && parent_node.is_in_group("ramp"):
+			is_on_ramp = true
+		else:
+			is_on_ramp = false
