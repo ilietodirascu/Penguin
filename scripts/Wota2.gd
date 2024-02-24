@@ -20,7 +20,7 @@ func _process(delta):
 		entered = false #todo make it float
 		peng_instance.linear_velocity.y = 0.4 * peng_instance.linear_velocity.y
 		#peng_instance.apply_force(-peng_instance.linear_velocity * 10, peng_instance.linear_velocity)
-		print(peng_instance.linear_velocity.y)
+		#print(peng_instance.linear_velocity.y)
 		
 func get_peng() -> Node2D:
 	for body in get_overlapping_bodies():
@@ -34,4 +34,3 @@ func body_entered(body: Node2D):
 	
 func body_exited(body: Node2D):
 	print("exited 00")
-
