@@ -52,4 +52,5 @@ scale = Vector2(2.50994, 1)
 color = Color(0.0745098, 0.054902, 1, 0.329412)
 polygon = PackedVector2Array(1557.33, 3, -1047.88, -18, -1045.46, 436, -804.694, 436, 1562.15, 436)
 
+[connection signal="body_entered" from="Wota2" to="RigidBody2D" method="_on_wota_2_body_entered"]
 [connection signal="body_exited" from="Wota2" to="RigidBody2D" method="_on_wota_2_body_exited"]

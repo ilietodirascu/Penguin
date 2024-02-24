@@ -3,12 +3,14 @@ extends RigidBody2D
 var glideForce = 1  # Adjust for the desired forward glide
 var lift_strength = 800 
 var drag_coefficient = 0.1  
-var is_on_ramp = true
 var raycast:RayCast2D = null
 var direction : Vector2
 var gravity_vector = Vector2(0,1)
 const ramp_gravity_scale = 2.0
 var boost_strength = 300 
+
+var is_on_ramp = true
+var touch_water : bool = false
 
 func _ready():
 	contact_monitor = true
@@ -29,7 +31,7 @@ func _physics_process(delta):
 		reset_gravity()
 	
 	apply_central_impulse(direction * glideForce) 
-	if !is_on_ramp:
+	if !is_on_ramp && !touch_water:
 		apply_lift()
 		apply_drag()
 		modify_angular_momentum()
@@ -86,4 +88,8 @@ func raycasting_process(delta):
 
 func _on_wota_2_body_exited(body):
 	linear_velocity.y = 0.4 * linear_velocity.y
-	#exited_water = true
+	if linear_velocity.y > -80:
+		get_tree().quit()
+
+func _on_wota_2_body_entered(body):
+	touch_water = true
