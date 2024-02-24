@@ -25,3 +25,4 @@ func is_velocity_zero(rigidbody):
 
 func end_run():
 	get_tree().quit()  # Quit the game
+	pass

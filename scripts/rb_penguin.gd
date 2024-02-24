@@ -1,7 +1,6 @@
 extends RigidBody2D
 
 var glideForce = 1000  # Adjust this value to control the strength of the glide force.
-# Called when the node enters the scene tree for the first time.
 var lift_strength = 800  # Adjusted for more noticeable lift
 var drag_coefficient = 0.1
 var is_on_ramp = true
@@ -9,9 +8,7 @@ var raycast:RayCast2D = null
 
 
 func _ready():
-	contact_monitor = true
 	raycast = $RayCast2D
-	max_contacts_reported = 2
 	angular_velocity = 0.0
 	
 func _physics_process(delta):
@@ -28,21 +25,6 @@ func _physics_process(delta):
 		apply_drag()
 		modify_angular_momentum()
 	
-	
-	
-	
-func modify_in_water():
-	# Adjust properties when in water (e.g., reduce gravity, apply buoyancy)
-	var gravity_scale = 0.5  # Adjust this value according to your needs
-	var linear_damping = 2.0  # Adjust this value according to your needs
-
-	set_gravity_scale(gravity_scale)
-	#set_linear_damping(linear_damping)
-
-func reset_properties():
-	# Reset properties when not in water
-	set_gravity_scale(1.0)
-	#set_linear_damping(0.0)
 func modify_angular_momentum():
 	if Input.is_action_pressed("ui_right") && angular_velocity < 1:
 		angular_velocity += 1
