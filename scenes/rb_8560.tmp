@@ -18,7 +18,4 @@ polygon = PackedVector2Array(56, 11, 47, 36, 40, 33, 36, 39, 29, 43, 21, 43, 4, 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(-7, 618)
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
