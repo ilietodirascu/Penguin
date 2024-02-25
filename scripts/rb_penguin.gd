@@ -6,13 +6,14 @@ var drag_coefficient = 0.1
 var raycast:RayCast2D = null
 var direction : Vector2
 var gravity_vector = Vector2(0,1)
-const ramp_gravity_scale = 2.0
+const air_gravity_scale = 2.0
 var boost_strength = 300 
 
 var is_on_ramp = true
 var touch_water : bool = false
 
 func _ready():
+	reset_gravity()
 	contact_monitor = true
 	raycast = $RayCast2D
 	max_contacts_reported = 2
@@ -25,9 +26,10 @@ func _physics_process(delta):
 	
 	raycasting_process(delta)
 
-	if is_on_ramp:
-		set_gravity_scale(ramp_gravity_scale)  # Increased gravity on ramps
-	else:
+	if !is_on_ramp && !touch_water:
+		set_gravity_scale(air_gravity_scale)
+	
+	if touch_water:
 		reset_gravity()
 	
 	apply_central_impulse(direction * glideForce) 
@@ -92,4 +94,5 @@ func _on_wota_2_body_exited(body):
 		get_tree().change_scene_to_file("res://scenes/upgrades.tscn")
 
 func _on_wota_2_body_entered(body):
-	touch_water = true
+	if body.is_in_group("character"):
+		touch_water = true

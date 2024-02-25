@@ -24,7 +24,6 @@ func load_from_file():
 		rocket = progression.get_value("", "rocket")
 		rocket_fuel = progression.get_value("", "rocket_fuel")
 		days = progression.get_value("", "days")
-		print("foo ", acceleration)
 	else:
 		progression.set_value("", "acceleration", 0)
 		progression.set_value("", "air_resistance", 0)
