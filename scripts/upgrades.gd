@@ -10,7 +10,7 @@ var rocket_fuel = 0
 var days = 0
 
 func _ready():
-	pass
+	render_buttons()
 
 func _process(delta):
 	pass
@@ -32,3 +32,20 @@ func load_from_file():
 		progression.set_value("", "rocket_fuel", 0)
 		progression.set_value("", "days", 0)
 		progression.save(filename)
+
+
+func _on_ready_button_pressed():
+	print(acceleration)
+	get_tree().change_scene_to_file("res://scenes/main.tscn") # Replace with function body.
+	
+func render_buttons():
+	var item_list = $TextureRect/Acceleration
+	var texture = preload("res://Assets/menus/unmarked_box.png")
+	for i in range(10):
+		var item = TextureButton.new()
+		item.texture_normal = texture
+		item.set_h_size_flags(SIZE_EXPAND)
+		item.set_v_size_flags(SIZE_EXPAND)
+		item.set_size(Vector2(60,30))
+		item_list.add_child(item)
+	

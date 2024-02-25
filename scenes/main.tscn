@@ -68,6 +68,7 @@ scale = Vector2(0.424479, 0.424479)
 texture = ExtResource("4_ugqpp")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
