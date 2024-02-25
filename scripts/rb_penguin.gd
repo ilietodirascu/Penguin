@@ -89,7 +89,7 @@ func raycasting_process(delta):
 
 func _on_wota_2_body_exited(body):
 	linear_velocity.y = 0.4 * linear_velocity.y
-	if linear_velocity.y > -80 && touch_water:
+	if linear_velocity.y > -80 && touch_water && self.is_inside_tree():
 		get_tree().change_scene_to_file("res://scenes/shop.tscn")
 
 func _on_wota_2_body_entered(body):
