@@ -6,7 +6,7 @@ var drag_coefficient = 0.1
 var raycast:RayCast2D = null
 var direction : Vector2
 var gravity_vector = Vector2(0,1)
-const air_gravity_scale = 2.0
+const ramp_gravity_scale = 2.0
 var boost_strength = 300 
 
 var is_on_ramp = true
@@ -26,10 +26,9 @@ func _physics_process(delta):
 	
 	raycasting_process(delta)
 
-	if !is_on_ramp && !touch_water:
-		set_gravity_scale(air_gravity_scale)
-	
-	if touch_water:
+	if is_on_ramp:
+		set_gravity_scale(ramp_gravity_scale)
+	else:
 		reset_gravity()
 	
 	apply_central_impulse(direction * glideForce) 
@@ -90,7 +89,7 @@ func raycasting_process(delta):
 
 func _on_wota_2_body_exited(body):
 	linear_velocity.y = 0.4 * linear_velocity.y
-	if linear_velocity.y > -80:
+	if linear_velocity.y > -80 && touch_water:
 		get_tree().change_scene_to_file("res://scenes/upgrades.tscn")
 
 func _on_wota_2_body_entered(body):
