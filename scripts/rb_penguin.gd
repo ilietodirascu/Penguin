@@ -49,10 +49,10 @@ func reset_gravity():
 
 func modify_angular_momentum():
 	if Input.is_action_pressed("ui_right") && angular_velocity < 1:
-		angular_velocity += 1
+		angular_velocity += 0.5
 		set_angular_velocity(angular_velocity)
 	if Input.is_action_pressed("ui_left") && angular_velocity > -1:
-		angular_velocity -= 1
+		angular_velocity -= 0.5
 		set_angular_velocity(angular_velocity)
 
 func apply_gradual_counter_torque(torque: float, limit: float): 
