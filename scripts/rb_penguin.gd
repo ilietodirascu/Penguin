@@ -12,6 +12,7 @@ var boost_strength = 300
 var is_on_ramp = true
 var touch_water : bool = false
 
+
 func _ready():
 	reset_gravity()
 	contact_monitor = true
@@ -95,3 +96,6 @@ func _on_wota_2_body_exited(body):
 func _on_wota_2_body_entered(body):
 	if body.is_in_group("character"):
 		touch_water = true
+
+
+		
