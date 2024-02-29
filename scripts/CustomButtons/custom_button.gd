@@ -2,7 +2,6 @@ extends TextureButton
 
 class_name CustomButton
 const marked_texture = preload("res://Assets/menus/marked_box.png")
-
 var param_name = ""
 var price = 0
 var is_marked = false
@@ -46,6 +45,7 @@ func _on_mouse_pressed():
 		FileManager.update_value(param_name,value)
 		shop.update_upgrade_cost_label("")
 		shop.update_money_label(FileManager.get_money())
+		shop.play_boom()
 
 func count_total_price() -> int:
 	var total_price = price

@@ -14,7 +14,6 @@ const glider_3_cost = 10000
 const rocket_1_cost = 750
 const rocket_2_cost = 5000
 const rocket_3_cost = 15000
-
 func _ready():
 	acceleration_container = $TextureRect/Acceleration
 	air_resistance_container = $"TextureRect/Air Resistance"
@@ -45,6 +44,9 @@ func render_buttons(path,param,initial_price,price_scaling,name,total_buttons: i
 
 
 
+func play_boom():
+	var boom_sfx = $"TextureRect/Boom_sfx"
+	boom_sfx.play()
 
 func _on_ready_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/main.tscn") # Replace with function body.
@@ -71,23 +73,34 @@ func can_buy(cost) -> bool:
 
 
 func _on_glider_1_mouse_entered():
-	update_upgrade_cost_label(glider_1_cost)
+	if(FileManager.get_glider() < 1):
+		update_upgrade_cost_label(glider_1_cost)
 
 
 func _on_glider_1_mouse_exited():
 	update_upgrade_cost_label("")
 
+func process_glider_transaction(cost,value):
+	if(FileManager.get_glider() >= value || not can_buy(cost)):
+		return
+	FileManager.set_glider(value)
+	update_money_label(FileManager.get_money() - cost)
+	FileManager.set_money(FileManager.get_money() - cost)
+
+func process_rocket_transaction(cost,value):
+	if(FileManager.get_rocket() >= value || not can_buy(cost)):
+		return
+	FileManager.set_rocket(value)
+	update_money_label(FileManager.get_money() - cost)
+	FileManager.set_money(FileManager.get_money() - cost)
 
 func _on_glider_1_pressed():
-	if(FileManager.get_glider() >= 1 || not can_buy(glider_1_cost)):
-		return
-	FileManager.set_glider(1)
-	update_money_label(FileManager.get_money() - glider_1_cost)
-	FileManager.set_money(FileManager.get_money() - glider_1_cost)
+	process_glider_transaction(glider_1_cost,1)
 
 
 func _on_glider_2_mouse_entered():
-	update_upgrade_cost_label(glider_2_cost)
+	if(FileManager.get_glider() < 2):
+		update_upgrade_cost_label(glider_2_cost)
 
 
 func _on_glider_2_mouse_exited():
@@ -95,12 +108,12 @@ func _on_glider_2_mouse_exited():
 
 
 func _on_glider_2_pressed():
-	FileManager.set_glider(2)
-	update_money_label(FileManager.get_money() - glider_2_cost)
+	process_glider_transaction(glider_2_cost,2)
 
 
 func _on_glider_3_mouse_entered():
-	update_upgrade_cost_label(glider_3_cost)
+	if(FileManager.get_glider() < 3):
+		update_upgrade_cost_label(glider_3_cost)
 
 
 func _on_glider_3_mouse_exited():
@@ -108,5 +121,43 @@ func _on_glider_3_mouse_exited():
 
 
 func _on_glider_3_pressed():
-	FileManager.set_glider(3)
-	update_money_label(FileManager.get_money() - glider_3_cost)
+	process_glider_transaction(glider_3_cost,3)
+
+
+func _on_rocket_1_mouse_entered():
+	if(FileManager.get_rocket() < 1):
+		update_upgrade_cost_label(rocket_1_cost)
+
+
+func _on_rocket_1_mouse_exited():
+	update_upgrade_cost_label("")
+
+
+func _on_rocket_1_pressed():
+	process_rocket_transaction(rocket_1_cost,1)
+
+
+func _on_rocket_2_pressed():
+	process_rocket_transaction(rocket_2_cost,2)
+
+
+func _on_rocket_2_mouse_entered():
+	if(FileManager.get_rocket() < 2):
+		update_upgrade_cost_label(rocket_2_cost)
+
+
+func _on_rocket_2_mouse_exited():
+	update_upgrade_cost_label("")
+
+
+func _on_rocket_3_pressed():
+	process_rocket_transaction(rocket_3_cost,3)
+
+
+func _on_rocket_3_mouse_entered():
+	if(FileManager.get_rocket() < 3):
+		update_upgrade_cost_label(rocket_3_cost)
+
+
+func _on_rocket_3_mouse_exited():
+	update_upgrade_cost_label("")
