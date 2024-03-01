@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bluqppskb3my3"]
+[gd_scene load_steps=4 format=3 uid="uid://bluqppskb3my3"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_4l6t4"]
 [ext_resource type="Texture2D" uid="uid://efuejwqcptcf" path="res://Assets/backgrounds/play-bg.png" id="2_met2d"]
+[ext_resource type="AudioStream" uid="uid://dqbvftrq64v2o" path="res://Assets/audio/background.ogg" id="3_txky8"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -46,7 +47,11 @@ layout_mode = 2
 text = "Quit
 "
 
-[connection signal="pressed" from="TextureRect/Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[node name="background_song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_txky8")
+autoplay = true
+
 [connection signal="pressed" from="TextureRect/Control/VBoxContainer/Play" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="TextureRect/Control/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="TextureRect/Control/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="TextureRect/Control/VBoxContainer/Quit" to="." method="_on_play_button_pressed"]

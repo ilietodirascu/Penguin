@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvjaemy7kng4c"]
+[gd_scene load_steps=6 format=3 uid="uid://dvjaemy7kng4c"]
 
 [ext_resource type="Script" path="res://scripts/rb_penguin.gd" id="1_f7r0k"]
-[ext_resource type="Texture2D" uid="uid://cqbtpaxinkivd" path="res://Assets/character/PenguFlyer1.png" id="2_umod2"]
+[ext_resource type="Texture2D" uid="uid://du0q6jybgtfbv" path="res://Assets/Pengu.png" id="2_t5qss"]
+[ext_resource type="AudioStream" uid="uid://c5ostgjkhx8e8" path="res://Assets/audio/Water Splash Sound Effect.wav" id="3_a5ocf"]
+[ext_resource type="AudioStream" uid="uid://bvg46t1h3y5fw" path="res://Assets/audio/Rocket.wav" id="4_kxc74"]
+[ext_resource type="AudioStream" uid="uid://d14rjch4qpja0" path="res://Assets/audio/wind.ogg" id="5_ekpc3"]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=["character"]]
 script = ExtResource("1_f7r0k")
@@ -10,15 +13,26 @@ script = ExtResource("1_f7r0k")
 position = Vector2(-3, -1)
 rotation = 0.47822
 scale = Vector2(0.285, 0.285)
-texture = ExtResource("2_umod2")
+texture = ExtResource("2_t5qss")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(6, 13)
 polygon = PackedVector2Array(56, 11, 47, 36, 40, 33, 36, 39, 29, 43, 21, 43, 4, 35, -8, 26, -17, 25, -28, 18, -31, 16, -44, 8, -53, -1, -56, -5, -56, -9, -60, -12, -32, -51)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-7, 618)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(-7, 618)
+[node name="water_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a5ocf")
+
+[node name="rocket_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kxc74")
+
+[node name="wind_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ekpc3")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

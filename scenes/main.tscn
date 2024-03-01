@@ -1,21 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7y5o6f127fr4"]
+[gd_scene load_steps=8 format=3 uid="uid://b7y5o6f127fr4"]
 
 [ext_resource type="PackedScene" uid="uid://dvjaemy7kng4c" path="res://scenes/rb_penguin.tscn" id="3_c3pm2"]
-[ext_resource type="Script" path="res://scripts/ramp1.gd" id="4_2kdpu"]
 [ext_resource type="Texture2D" uid="uid://co5hvi0dnjcl5" path="res://Assets/ramps/ramp1.png" id="4_ary8v"]
 [ext_resource type="Script" path="res://scripts/Wota2.gd" id="4_lmbaa"]
+[ext_resource type="Script" path="res://scripts/gauge.gd" id="4_qskfv"]
+[ext_resource type="Texture2D" uid="uid://d8yar7ad2a5r" path="res://Assets/gauges/gauge.png" id="4_ugqpp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w61ts"]
 friction = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpng7"]
-size = Vector2(10764, 426)
+size = Vector2(6518, 426)
 
 [node name="Node" type="Node"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["ramp"]]
+position = Vector2(-68, 0)
 physics_material_override = SubResource("PhysicsMaterial_w61ts")
-script = ExtResource("4_2kdpu")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(721, 280)
@@ -26,7 +28,7 @@ texture = ExtResource("4_ary8v")
 polygon = PackedVector2Array(-6, 134, 233, 146, 252, 188, 266, 219, 315, 313, 373, 398, 447, 465, 505, 496, 587, 513, 721, 503, 924, 454, 937, 751, 362, 707, -199, 710)
 
 [node name="RigidBody2D" parent="." instance=ExtResource("3_c3pm2")]
-position = Vector2(43, 92)
+position = Vector2(2, 97)
 rotation = -0.53766
 metadata/is_character = true
 
@@ -43,13 +45,32 @@ script = ExtResource("4_lmbaa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wota2"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(2592, 193)
+position = Vector2(469, 193)
 shape = SubResource("RectangleShape2D_mpng7")
 
 [node name="Polygon2D" type="Polygon2D" parent="Wota2"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(1522, -9)
-scale = Vector2(4.14363, 1)
+position = Vector2(-189.908, -9)
+scale = Vector2(2.50994, 1)
 color = Color(0.0745098, 0.054902, 1, 0.329412)
 polygon = PackedVector2Array(1557.33, 3, -1047.88, -18, -1045.46, 436, -804.694, 436, 1562.15, 436)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("4_qskfv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Node2D"]
+position = Vector2(452, 212)
+scale = Vector2(0.424479, 0.424479)
+texture = ExtResource("4_ugqpp")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="body_entered" from="Wota2" to="RigidBody2D" method="_on_wota_2_body_entered"]
+[connection signal="body_exited" from="Wota2" to="RigidBody2D" method="_on_wota_2_body_exited"]
