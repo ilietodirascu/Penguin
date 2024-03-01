@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvjaemy7kng4c"]
 
 [ext_resource type="Script" path="res://scripts/rb_penguin.gd" id="1_f7r0k"]
-[ext_resource type="Texture2D" uid="uid://cqbtpaxinkivd" path="res://Assets/character/PenguFlyer1.png" id="2_umod2"]
+[ext_resource type="Texture2D" uid="uid://du0q6jybgtfbv" path="res://Assets/Pengu.png" id="2_t5qss"]
 [ext_resource type="AudioStream" uid="uid://c5ostgjkhx8e8" path="res://Assets/audio/Water Splash Sound Effect.wav" id="3_a5ocf"]
 [ext_resource type="AudioStream" uid="uid://bvg46t1h3y5fw" path="res://Assets/audio/Rocket.wav" id="4_kxc74"]
 [ext_resource type="AudioStream" uid="uid://d14rjch4qpja0" path="res://Assets/audio/wind.ogg" id="5_ekpc3"]
@@ -13,7 +13,7 @@ script = ExtResource("1_f7r0k")
 position = Vector2(-3, -1)
 rotation = 0.47822
 scale = Vector2(0.285, 0.285)
-texture = ExtResource("2_umod2")
+texture = ExtResource("2_t5qss")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(6, 13)
