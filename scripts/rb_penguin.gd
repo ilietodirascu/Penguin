@@ -74,7 +74,6 @@ func _physics_process(delta):
 	else:
 		reset_gravity()
 		
-	
 	apply_central_impulse(direction * acceleration) 
 	if !is_on_ramp && !touch_water:
 		apply_lift()
@@ -118,6 +117,7 @@ func apply_lift():
 
 func apply_drag():
 	var velocity = linear_velocity
+	
 	var drag_force = velocity.normalized() * -drag_coefficient * velocity.length()  # drag_coefficient is a variable you can adjust
 	apply_central_force(drag_force)
 
@@ -134,14 +134,14 @@ func raycasting_process(delta):
 	else:
 		is_on_ramp = false
 func track_altitude():
-	var current_altitude = position.y  # This is an example; adjust based on your game's logic
+	var current_altitude = abs(position.y)  
 	if current_altitude > max_altitude:
 		max_altitude = current_altitude
 
 func _on_wota_2_body_exited(body):
 	linear_velocity.y = 0.4 * linear_velocity.y
 	if linear_velocity.y > -80 && touch_water && self.is_inside_tree():
-		var distance = (linear_velocity.length() / 100)
+		var distance = (linear_velocity.length() / 10)
 		var duration = Time.get_unix_time_from_system() - start_time
 		var altitude = (max_altitude / 100)
 		var total = round(altitude + distance)
@@ -152,6 +152,7 @@ func _on_wota_2_body_exited(body):
 		print(round(altitude + distance))
 		print(altitude)
 		print(distance)
+		print(linear_velocity.length())
 		FileManager.set_money(FileManager.get_money() + total)
 		get_tree().change_scene_to_file("res://scenes/results.tscn")
 
